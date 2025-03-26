@@ -1,0 +1,15 @@
+pyproject.toml
+setup.py
+./longest_run/__init__.py
+./longest_run/core.py
+./longest_run/utils/__init__.py
+./longest_run/utils/array_to_pandas.py
+./longest_run/utils/estimate_window.py
+./longest_run/utils/plot_results.py
+./longest_run/utils/recursive_predict.py
+./longest_run/utils/smooth_signal.py
+./longest_run/utils/statistical_tests.py
+longest_run.egg-info/PKG-INFO
+longest_run.egg-info/SOURCES.txt
+longest_run.egg-info/dependency_links.txt
+longest_run.egg-info/top_level.txt
