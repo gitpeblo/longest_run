@@ -6,9 +6,9 @@ from matplotlib import rcParams #type: ignore
 def plot_results(
     df_x_0, df_yhat, df_y, df_ysm, df_ysm_std, df_ysm_std_comm,
     df_yhat_comm, df_y_comm, df_stats, M_r_comm_n_dt, timesteps_comm,
-    burn_in, win_local, t_LR, idx_LR, LR, stat_LR, p_LR, evaluation, MAX_timesteps,
+    burn_in, win_local, t_LR, idx_LR, LR, stat_LR, p_LR, MAX_timesteps,
     base_metric, base_score_LR, method, chi2nu_thresh, rho_thresh, alpha,
-    idx_slider=None, idx_t_slider=None):
+    idx_slider=None, idx_t_slider=None, savefig=None):
 
     # Extracting convenient quantities:
     y_comm, yhat_comm = df_y_comm.values.flatten(), df_yhat_comm.values.flatten()
@@ -20,7 +20,7 @@ def plot_results(
     smoothed = not df_y.equals(df_ysm)
 
     # Slider window start
-    idx_t_slider_min = max(-1, idx_t_slider - win_local) if evaluation == 'local' else 0
+    idx_t_slider_min = max(-1, idx_t_slider - win_local)
 
     def calculate_bins(vmin, vmax, n=10):
         width = (vmax - vmin) / n
@@ -31,7 +31,7 @@ def plot_results(
     bins_r = calculate_bins(r_comm.min(), r_comm.max())
 
     # Extract windowed quantities
-    sl = slice(max(0, idx_slider - win_local), idx_slider) if evaluation == 'local' else slice(0, idx_slider)
+    sl = slice(max(0, idx_slider - win_local), idx_slider)
     y_comm_dt_slider = y_comm[sl]
     yhat_comm_dt_slider = yhat_comm[sl]
     r_comm_dt_slider = r_comm[sl]
@@ -69,7 +69,7 @@ def plot_results(
 
     ax.set_ylabel('series value')
     ax.tick_params(labelbottom=False)
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.25), ncol=4)
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.25), ncol=5)
 
     if df_x_0 is not None:
         padding = abs(np.min(df_x_0.index) - ax.get_xlim()[0])
@@ -230,6 +230,8 @@ def plot_results(
         for spine in ['top', 'bottom', 'left', 'right']:
             ax.spines[spine].set_color('grey')
 
+    if savefig is not None:
+        plt.savefig(savefig+'/LR.png', dpi=600, bbox_inches='tight')
     plt.show()
 #------------------------------------------------------------------------------
 
