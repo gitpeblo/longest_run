@@ -479,7 +479,7 @@ def estimate_window(
 
             ax1.set_title("Series - " + plot_label)
             ax1.plot(series, label="Original", c='C0', alpha=0.8)
-            ax1.set_xlabel("time")
+            ax1.set_xlabel("timestep")
             ax1.set_ylabel("value")
             
             ax2.set_title("Wavelet Spectral Density - " + plot_label)
@@ -489,8 +489,8 @@ def estimate_window(
                      c='C3', label="Spectrum (smoothed)")
             ax2.axvline(optimal_scale, color='r', linestyle='--',
                         label=f"Optimal scale = {optimal_scale}", zorder=-1)
-            ax2.set_xlabel("Scale (Window Size)")
-            ax2.set_ylabel("Average Power")
+            ax2.set_xlabel("scale")
+            ax2.set_ylabel("average power")
             
             plt.tight_layout()
             plt.legend()
