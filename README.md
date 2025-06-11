@@ -1,6 +1,6 @@
 # longest_run
 
-© 2025 Paolo Bonfini — All content in this repository is original work. Forked from: https://github.com/gitpeblo/longest_run
+© 2025 Paolo Bonfini — All content in this repository is original work. Official deployment at: https://github.com/gitpeblo/longest_run
 
 This repository provides a Python implementation of the "Longest Run" (LR) metric, designed for evaluating the robustness and predictive reach of forecasting models on time series data. The metric estimates the number of timesteps for which a model remains statistically consistent with the ground truth before a significant divergence occurs.
 
